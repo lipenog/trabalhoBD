@@ -4,17 +4,17 @@ USE trabalho;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `idUser` int(11) NOT NULL AUTO_INCREMENT,
-  `cpf` int(11) NOT NULL DEFAULT '0',
+  `cpf` varchar(50) NOT NULL DEFAULT '0',
   `nome` varchar(50) DEFAULT NULL,
   `datanasc` date DEFAULT NULL,
   `endereco` varchar(50) DEFAULT NULL,
   `sexo` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `telefone`;
 CREATE TABLE `telefone` (
-  `numero` int(11) NOT NULL DEFAULT '0',
+  `numero` varchar(50) NOT NULL DEFAULT '0',
   `ddd` int(2) DEFAULT NULL,
   `idUser` int(11) DEFAULT NULL,
   PRIMARY KEY (`numero`),
@@ -79,3 +79,19 @@ CREATE TABLE `ofertas` (
   PRIMARY KEY (`idProduto`),
   CONSTRAINT `FK_oferta_produto` FOREIGN KEY (`idProduto`) REFERENCES `produto` (`idProduto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `user` (`cpf`, `nome`, `datanasc`, `endereco`, `sexo`)
+VALUES
+  ('12345678901', 'João Silva', '1980-01-01', '1 Rua Principal', 'Masculino'),
+  ('23456789012', 'Maria Oliveira', '1985-03-15', '2 Rua do Carmo', 'Feminino'),
+  ('34567890123', 'Pedro Souza', '1990-07-10', '3 Rua das Flores', 'Masculino'),
+  ('45678901234', 'Ana Costa', '1995-12-01', '4 Rua da Lua', 'Feminino');
+
+INSERT INTO `telefone` (`numero`, `ddd`, `idUser`)
+VALUES
+  ('1112223333', 11, 1),
+  ('2223334444', 21, 2),
+  ('3333444555', 31, 3),
+  ('4445556666', 41, 4);
+
